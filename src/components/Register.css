@@ -1,0 +1,383 @@
+:root {
+  --heist-red: #e50914;
+  --heist-dark: #0b0c0d;
+  --heist-white: #f2f2f2;
+  --heist-gray: #b7b7b7;
+  --blood-dark: #2a0000;
+  --shadow: 0 14px 40px rgba(229, 0, 0, 0.7);
+}
+
+/* Global reset */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--heist-dark); color: var(--heist-white); }
+
+/* Background with blood streaks */
+.heist-bg {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0000, #1b0000 40%, #2a0000 70%);
+  overflow: hidden;
+}
+.heist-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+      -45deg,
+      rgba(139,0,0,0.05) 0 2px,
+      rgba(229,0,0,0.1) 2px 5px,
+      rgba(0,0,0,0) 5px 7px
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Header */
+.heist-header {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 60px 16px 20px;
+  z-index: 1;
+}
+
+.heist-title {
+  font-size: clamp(32px, 5vw, 54px);
+  text-transform: uppercase;
+  font-weight: 900;
+  background: linear-gradient(90deg, #fff, var(--heist-red), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.12em;
+  margin: 12px 0 6px;
+  animation: title-flicker 1.8s linear infinite;
+}
+
+@keyframes title-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.4; }
+}
+
+.heist-sub { color: var(--heist-gray); letter-spacing: 0.06em; }
+
+/* Mask badge */
+.mask-badge {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff 0 8%, #ff0000 8% 40%, #2a2a2a 40% 100%);
+  box-shadow: 0 0 20px rgba(229,0,0,0.8), inset 0 0 30px rgba(139,0,0,0.5);
+}
+
+/* Card container with pulse */
+.container.heist-card {
+  max-width: 980px;
+  margin: -20px auto 40px;
+  padding: 36px;
+  background: linear-gradient(145deg, #1b0000, #111, #2a0000);
+  border-radius: 20px;
+  border: 2px solid var(--heist-red);
+  box-shadow: 0 0 25px rgba(229,0,0,0.7);
+  animation: card-pulse 3s infinite alternate;
+  position: relative;
+}
+@keyframes card-pulse {
+  0% { box-shadow: 0 0 25px rgba(229,0,0,0.7); transform: scale(1); }
+  50% { box-shadow: 0 0 35px rgba(229,0,0,0.85); transform: scale(1.01); }
+  100% { box-shadow: 0 0 25px rgba(229,0,0,0.7); transform: scale(1); }
+}
+
+/* Form */
+.form { display: flex; flex-direction: column; gap: 28px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+label { font-weight: 700; color: #fff; }
+.req { color: var(--heist-red); }
+.opt { color: var(--heist-gray); font-weight: 600; }
+
+/* Inputs: half width, blood neon glow */
+input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  background: linear-gradient(145deg, #111, #1a0000);
+  color: #fff;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+input::placeholder { color: #888; }
+
+input:focus {
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(45deg, #fff, var(--heist-red), #8b0000);
+  box-shadow: 0 0 20px rgba(229,0,0,0.9);
+  transform: translateY(-1px);
+}
+
+input:hover {
+  animation: input-glow 1.5s infinite alternate;
+}
+@keyframes input-glow {
+  0% { box-shadow: 0 0 10px rgba(229,0,0,0.6); }
+  100% { box-shadow: 0 0 20px rgba(229,0,0,1); }
+}
+
+/* Member sections: blood splatter glow */
+.member-section {
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #1a0000, #111, #2a0000);
+  border: 1px dashed #8b0000;
+  box-shadow: 0 0 20px rgba(139,0,0,0.5) inset;
+  position: relative;
+}
+.member-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(139,0,0,0.1), transparent 60%);
+  pointer-events: none;
+}
+
+.member-title {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #fff;
+  position: relative;
+}
+.member-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 60px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, #8b0000, #fff);
+}
+
+/* Two-column rows: half width inputs */
+.form-row { display: flex; gap: 20px; }
+.form-row .form-group { flex: 1; }
+
+/* Submit button: blood pulse */
+.submit-btn {
+  padding: 14px 26px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8b0000, #e50914, #8b0000);
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(229,0,0,0.9), inset 0 -2px 0 rgba(0,0,0,.3);
+  animation: btn-pulse 2s infinite alternate;
+  transition: all 0.2s ease;
+}
+.submit-btn:hover { filter: brightness(1.2); }
+.submit-btn:active { transform: translateY(1px); }
+@keyframes btn-pulse {
+  0% { box-shadow: 0 12px 25px rgba(229,0,0,0.8), inset 0 -2px 0 rgba(0,0,0,.3); transform: scale(1); }
+  50% { box-shadow: 0 16px 35px rgba(229,0,0,1), inset 0 -2px 0 rgba(0,0,0,.4); transform: scale(1.02); }
+  100% { box-shadow: 0 12px 25px rgba(229,0,0,0.8), inset 0 -2px 0 rgba(0,0,0,.3); transform: scale(1); }
+}
+
+/* Footer */
+.heist-footer {
+  text-align: center;
+  color: var(--heist-gray);
+  padding: 32px 12px 60px;
+  letter-spacing: .04em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .form-row { flex-direction: column; }
+  .container.heist-card { margin: 16px; padding: 26px; }
+}
+
+
+
+
+
+.heist-title {
+  font-size: clamp(32px, 5vw, 54px);
+  text-transform: uppercase;
+  font-weight: 900;
+  background: linear-gradient(90deg, #fff, #e50914, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.12em;
+  margin: 12px 0 6px;
+  position: relative;
+  display: inline-block;
+
+  /* Fly-in + landing */
+  animation: fly-in-slow 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+             landing-shake 0.4s 2s ease-out forwards;
+  transform: translateX(-200%) rotate(-10deg) scale(0.5);
+}
+
+/* Fly-in keyframes */
+@keyframes fly-in-slow {
+  0% {
+    transform: translateX(-200%) rotate(-15deg) scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(20%) rotate(5deg) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-5%) rotate(-2deg) scale(0.98);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Landing shake effect */
+@keyframes landing-shake {
+  0%   { transform: translateX(0) scale(1); }
+  20%  { transform: translateX(-5px) scale(1.02); }
+  40%  { transform: translateX(5px) scale(0.98); }
+  60%  { transform: translateX(-3px) scale(1.01); }
+  80%  { transform: translateX(3px) scale(0.99); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+/* Ground crack container */
+.heist-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 4px;
+  opacity: 0.9;
+  background: repeating-linear-gradient(
+      45deg,
+      #8b0000,
+      #8b0000 2px,
+      transparent 2px,
+      transparent 4px
+  );
+  animation: crack-grow 0.4s 2s forwards;
+}
+
+/* Additional “crack lines” for tearing effect */
+.heist-title::before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  opacity: 0.7;
+  background: repeating-linear-gradient(
+      -45deg,
+      #ff0000,
+      #ff0000 2px,
+      transparent 2px,
+      transparent 4px
+  );
+  animation: crack-tear 0.5s 2s forwards;
+}
+
+/* Crack expansion */
+@keyframes crack-grow {
+  0% { width: 0; }
+  100% { width: 120px; }
+}
+
+/* Tear/fissure effect */
+@keyframes crack-tear {
+  0% { width: 0; }
+  50% { width: 60px; }
+  100% { width: 100px; }
+}
+
+
+/* Radio buttons (Year) */
+.radio-group {
+  display: flex;
+  gap: 16px;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  padding-left: 8px;
+}
+.radio-group input[type="radio"] {
+  accent-color: #e50914;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.radio-group input[type="radio"]:hover {
+  transform: scale(1.1);
+}
+
+/* Select (Hosteler / Dayscholar) */
+select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  background: linear-gradient(145deg, #111, #1a0000);
+  color: rgb(255, 255, 255);
+  background-color: black;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.25s ease;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #e50914 50%),
+                    linear-gradient(135deg, #e50914 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+select:focus {
+  border-image-slice: 1;
+  border-image-source: linear-gradient(45deg, #070707, var(--heist-red), #8b0000);
+  box-shadow: 0 0 20px rgba(229,0,0,0.9);
+}
+select:hover {
+  animation: input-glow 1.5s infinite alternate;
+}
+
+/* Error messages for new fields */
+.field-error {
+  font-size: 13px;
+  color: #ff4d4f;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Make new inputs consistent with two-column rows */
+.form-row .form-group select,
+.form-row .form-group input {
+  width: 100%;
+}
+
+/* Optional spacing for Member Sections */
+.member-section .form-group {
+  margin-bottom: 16px;
+}
+
+/* Optional: make radio + select responsive */
+@media (max-width: 900px) {
+  .radio-group {
+    flex-direction: row;
+   
+    /* padding-right: 20px; */
+  }
+}

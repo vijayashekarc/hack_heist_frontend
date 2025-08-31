@@ -1,0 +1,109 @@
+.success-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000000, #1a1a1a, #2b2b2b);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.success-card {
+  background-color: #121212;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 255, 150, 0.5);
+  text-align: center;
+  width: 450px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.success-animation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+  stroke-width: 2;
+  stroke: #00ff7f;
+  fill: none;
+  stroke-miterlimit: 10;
+  animation: scaleUp 0.5s ease-in-out forwards;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke: #00ff7f;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.success-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #00ff7f;
+  text-shadow: 0 0 10px rgba(0, 255, 127, 0.7);
+}
+
+.success-message {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.success-btn {
+  padding: 12px 25px;
+  background-color: #00ff7f;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.success-btn:hover {
+  background-color: #00cc66;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 127, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

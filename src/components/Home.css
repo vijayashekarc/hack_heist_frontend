@@ -1,0 +1,98 @@
+.home-bg {
+  position: relative;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1557682250-5b4f3dbf41e4?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.home-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.home-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.home-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.home-sub {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.home-btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.home-btn:hover {
+  background-color: #b00610;
+  transform: scale(1.05);
+}
+
+.home-footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  z-index: 2;
+}
+
+
+
+
+
+.home-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  color: #e50914;
+  text-shadow:
+    0 0 2px #e50914,
+    0 0 4px #ff0000,
+    0 0 6px #ff0000,
+    0 0 8px #ff0000;  /* reduced from 40px to 8px */
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #e50914;
+
+  animation: typewriter 3s steps(25) 1 forwards, flicker 1.5s infinite alternate;
+}
+
+@keyframes typewriter {
+  from { width: 0ch; }
+  to { width: 22ch; } /* match number of characters in "Welcome to Hackathon Heist" */
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.9; }
+}
