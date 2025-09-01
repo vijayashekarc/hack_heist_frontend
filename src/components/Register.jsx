@@ -17,7 +17,7 @@ const emptyMember = () => ({
   status: "", // updated
 });
 
-const api = "https://gfg-hack-heist.vercel.app/"
+const api = "https://hack-heist-backend.onrender.com"
 
 export default function Register() {
   const inputRefs = useRef([]);
