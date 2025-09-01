@@ -1,8 +1,11 @@
+
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
-const api = "https://hack-heist-backend.onrender.com";
+// import firsthalf from "Frontend\public\hackathon_inverted.png";
+// import secondhalf from "Frontend\public\hackathon_inverted.png";
+
 
 const emptyMember = () => ({
   name: "",
@@ -13,6 +16,8 @@ const emptyMember = () => ({
   department: "",
   status: "", // updated
 });
+
+const api = "https://register-backend-a6jz.onrender.com"
 
 export default function Register() {
   const inputRefs = useRef([]);
@@ -223,16 +228,30 @@ export default function Register() {
   return (
     <div className="heist-bg">
       <div className="heist-overlay" />
-      <header className="heist-header">
+      {/* <header className="heist-header">
         <div className="mask-badge" aria-hidden>
-          🎭
+          <img src="/logo.png" alt="" />
         </div>
-        <h1 className="heist-title">HACKATHON HEIST</h1>
+        <h1 className="heist-title"><img src="/title.png" alt="" /></h1>
         <p className="heist-sub">Register your crew. Plan the perfect build.</p>
         {typeof teamCount === "number" && (
           <div className="team-count">Teams registered: {teamCount} / 40</div>
         )}
+      </header> */}
+      <header className="heist-header">
+        <div className="logo-container">
+          <img src="/logo.png" alt="Hack Heist Logo" className="heist-logo" />
+        </div>
+        <h3>GFG CAMPUS BODY KARE PRESENTS</h3>
+        <h1 className="heist-title">
+          <img src="/title.png" alt="Hack Heist" />
+        </h1>
+        {/* <p className="heist-sub">Register your crew. Plan the perfect build.</p>
+        {typeof teamCount === "number" && (
+          <div className="team-count">Teams registered: {teamCount} / 40</div>
+        )} */}
       </header>
+
 
       <div className="container heist-card">
         <form className="form" onSubmit={handleSubmit} noValidate>
@@ -252,7 +271,7 @@ export default function Register() {
             />
             {errors.teamName && <div className="field-error">{errors.teamName}</div>}
           </div>
-
+          <p className = "member-title-note">*Note: Member 1 is Leader</p>
           {members.map((member, idx) => (
             <div key={idx} className="member-section">
               <h3 className="member-title">

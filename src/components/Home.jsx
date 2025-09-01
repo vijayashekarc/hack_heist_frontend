@@ -13,7 +13,8 @@ const Home = () => {
     <div className="home-bg">
       <div className="home-overlay" />
       <div className="home-content">
-        <h1 className="home-title">Welcome to Hackathon Heist</h1>
+        <img src="/title.png" alt="" />
+        <h1 className="home-title">Welcome to Hack Heist </h1>
         <p className="home-sub">Plan your team, heist the challenge, and win!</p>
         <button onClick={goToRegister} className="home-btn">
           Go to Registration

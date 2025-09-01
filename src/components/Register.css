@@ -32,13 +32,6 @@ html, body, #root { height: 100%; margin: 0; font-family: "Inter", system-ui, -a
 }
 
 /* Header */
-.heist-header {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 60px 16px 20px;
-  z-index: 1;
-}
 
 .heist-title {
   font-size: clamp(32px, 5vw, 54px);
@@ -49,13 +42,8 @@ html, body, #root { height: 100%; margin: 0; font-family: "Inter", system-ui, -a
   -webkit-text-fill-color: transparent;
   letter-spacing: 0.12em;
   margin: 12px 0 6px;
-  animation: title-flicker 1.8s linear infinite;
 }
 
-@keyframes title-flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 22%, 24%, 55% { opacity: 0.4; }
-}
 
 .heist-sub { color: var(--heist-gray); letter-spacing: 0.06em; }
 
@@ -70,6 +58,38 @@ html, body, #root { height: 100%; margin: 0; font-family: "Inter", system-ui, -a
   box-shadow: 0 0 20px rgba(229,0,0,0.8), inset 0 0 30px rgba(139,0,0,0.5);
 }
 
+
+.heist-logo {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10%; /* circular like reference */
+  filter:  drop-shadow(0 0 10px rgba(255,0,0,0.5));
+}
+
+.heist-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 16px 20px;
+  gap: 12px;
+  z-index: 1;
+}
+
+.heist-title img {
+  max-width: 250px; /* scale title image */
+  /* animation: title-flicker 1.8s linear infinite; */
+}
+
+
+
+
+
+
+
+
+
+
 /* Card container with pulse */
 .container.heist-card {
   max-width: 980px;
@@ -79,7 +99,7 @@ html, body, #root { height: 100%; margin: 0; font-family: "Inter", system-ui, -a
   border-radius: 20px;
   border: 2px solid var(--heist-red);
   box-shadow: 0 0 25px rgba(229,0,0,0.7);
-  animation: card-pulse 3s infinite alternate;
+  /* animation: card-pulse 3s infinite alternate; */
   position: relative;
 }
 @keyframes card-pulse {
@@ -157,6 +177,14 @@ input:hover {
   background: linear-gradient(90deg, #8b0000, #fff);
 }
 
+.member-title-note{
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #ff0000;
+  position: relative;
+
+}
+
 /* Two-column rows: half width inputs */
 .form-row { display: flex; gap: 20px; }
 .form-row .form-group { flex: 1; }
@@ -198,107 +226,149 @@ input:hover {
   .container.heist-card { margin: 16px; padding: 26px; }
 }
 
+/* ========== HEADER STYLES ========== */
+.heist-header {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px 16px 40px;
+  position: relative;
+  z-index: 10;
+  gap: 6px;
 
+}
 
+/* Reset default margins for headings & paragraphs */
+.heist-header h3,
+.heist-header h1,
+.heist-header p {
+  margin: 4px 0;
+  padding: 0;
+}
 
+/* Logo container */
+.logo-container {
+  width: 140px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
 
+.heist-logo {
+  width: 100%;
+  height: auto;
+  border-radius: 10%;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+}
+
+/* Title text and image */
 .heist-title {
-  font-size: clamp(32px, 5vw, 54px);
+  font-size: clamp(28px, 5vw, 54px);
   text-transform: uppercase;
   font-weight: 900;
   background: linear-gradient(90deg, #fff, #e50914, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 0.12em;
-  margin: 12px 0 6px;
+  margin: 6px 0;
   position: relative;
   display: inline-block;
-
-  /* Fly-in + landing */
-  animation: fly-in-slow 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
-             landing-shake 0.4s 2s ease-out forwards;
-  transform: translateX(-200%) rotate(-10deg) scale(0.5);
 }
 
-/* Fly-in keyframes */
-@keyframes fly-in-slow {
-  0% {
-    transform: translateX(-200%) rotate(-15deg) scale(0.5);
-    opacity: 0;
+.heist-title img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
+/* Subtitle below title */
+.heist-sub {
+  margin: 4px 0;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Team count section */
+.team-count {
+  margin-top: 8px;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  color: #ff4d4d;
+}
+
+/* ========== RESPONSIVENESS ========== */
+
+/* Small devices (phones) */
+@media (max-width: 480px) {
+  .heist-header {
+    padding: 16px 8px 30px;
+    gap: 4px;
   }
-  60% {
-    transform: translateX(20%) rotate(5deg) scale(1.05);
-    opacity: 1;
+
+  .logo-container {
+    width: 110px;
+    margin-bottom: 2px;
   }
-  80% {
-    transform: translateX(-5%) rotate(-2deg) scale(0.98);
+
+  .heist-title img {
+    max-width: 160px;
   }
-  100% {
-    transform: translateX(0) rotate(0deg) scale(1);
+
+  .heist-sub,
+  .team-count {
+    font-size: 13px;
   }
 }
 
-/* Landing shake effect */
-@keyframes landing-shake {
-  0%   { transform: translateX(0) scale(1); }
-  20%  { transform: translateX(-5px) scale(1.02); }
-  40%  { transform: translateX(5px) scale(0.98); }
-  60%  { transform: translateX(-3px) scale(1.01); }
-  80%  { transform: translateX(3px) scale(0.99); }
-  100% { transform: translateX(0) scale(1); }
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .logo-container {
+    width: 130px;
+  }
+
+  .heist-title img {
+    max-width: 190px;
+  }
+
+  .heist-sub,
+  .team-count {
+    font-size: 15px;
+  }
 }
 
-/* Ground crack container */
-.heist-title::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 4px;
-  opacity: 0.9;
-  background: repeating-linear-gradient(
-      45deg,
-      #8b0000,
-      #8b0000 2px,
-      transparent 2px,
-      transparent 4px
-  );
-  animation: crack-grow 0.4s 2s forwards;
+/* Large devices (laptops/desktops) */
+@media (min-width: 1024px) {
+  .heist-header {
+    padding: 40px 16px 60px;
+    gap: 8px;
+  }
+
+  .logo-container {
+    width: 180px;
+  }
+
+  .heist-title img {
+    max-width: 250px;
+  }
+
+  .heist-sub,
+  .team-count {
+    font-size: 18px;
+  }
 }
 
-/* Additional “crack lines” for tearing effect */
-.heist-title::before {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  width: 0;
-  height: 4px;
-  opacity: 0.7;
-  background: repeating-linear-gradient(
-      -45deg,
-      #ff0000,
-      #ff0000 2px,
-      transparent 2px,
-      transparent 4px
-  );
-  animation: crack-tear 0.5s 2s forwards;
-}
 
-/* Crack expansion */
-@keyframes crack-grow {
-  0% { width: 0; }
-  100% { width: 120px; }
-}
 
-/* Tear/fissure effect */
-@keyframes crack-tear {
-  0% { width: 0; }
-  50% { width: 60px; }
-  100% { width: 100px; }
-}
+
+
+
+
+
+
+
 
 
 /* Radio buttons (Year) */
