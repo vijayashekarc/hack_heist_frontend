@@ -17,7 +17,7 @@ const emptyMember = () => ({
   status: "", // updated
 });
 
-const api = "https://register-backend-a6jz.onrender.com"
+const api = "https://hack-heist-backend.onrender.com"
 
 export default function Register() {
   const inputRefs = useRef([]);
