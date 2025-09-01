@@ -315,7 +315,7 @@ export default function Register() {
                   <label>Email {idx < 3 && <span className="req">*</span>}</label>
                   <input
                     type="email"
-                    placeholder="Enter email"
+                    placeholder="Enter college mail id"
                     required={idx < 3}
                     value={member.email}
                     onChange={(e) => updateMember(idx, "email", e.target.value)}
